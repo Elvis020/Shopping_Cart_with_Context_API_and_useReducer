@@ -12,28 +12,6 @@ const Reducer = (state,action) => {
                 ...state,
                 cart: state.cart.filter(item => item.id !== action.payload)
             }
-        case 'INCREASE_PRODUCT_NUMBER':
-            let tempCart = state.cart.map(cartItem => {
-                if (cartItem.id === action.payload){
-                    return {...cartItem, amount: cartItem.amount + 1}
-                }
-                return cartItem
-            })
-            return{
-                ...state,
-                cart: tempCart
-            }
-        case 'DECREASE_PRODUCT_NUMBER':
-            let tempCart2 = state.cart.map(cartItem => {
-                if (cartItem.id === action.payload && cartItem.amount >= 1){
-                    return {...cartItem, amount: cartItem.amount - 1}
-                }
-                return cartItem
-            })
-            return{
-                ...state,
-                cart: tempCart2
-            }
         case 'GET_TOTALS':
             // Using reduce
             let {total,amount} = state.cart.reduce((cartTotal, cartItem) => {
